@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+
+*{
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    width: 90vw;
+}
+
+.panel {
+    background-size: auto 100%; /* definir para automático e 100% */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh; /* 80 de altura de viewport */
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    flex: 0.5; /* então todos eles estão iguais agora */
+    margin: 10px;
+    position: relative; /* para adicionar os três H e o lado absoluto, então isso significa
+    que o container H3 Divs, que o elemento container, que é o painel tem que ser relativo */
+    transition: flex 0.7s ease-in;
+}
+
+
+.panel h3 {
+    font-size: 24px;
+    position: absolute; /* por isso que tem relativo no outro, quero o absoluto H3 dentro dele
+    e quero que esteja no canto inferior esquerdo */
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+
+    /* agora quero que mostre as imagens so quando estiverem ativas
+    para conseguir ler os títulos e olhar as imagens */
+    opacity: 0;
+    /* CONTINUAÇÃO NA CLASS ABAIXO */
+}
+
+.panel.active {
+    /* estou apenas dizendo que se a div do painel também estiver um classe ativa,
+    mudará o fluxo de zero ponto cinco, que é o valor inicial para 5*/
+    flex: 5;
+}
+
+.panel.active h3 {
+    opacity: 1; /* então se estiver ativo a opacidade muda para 1 */
+    transition: opacity 0.3s ease-in 0.4s;
+}
+
+/* Agora se a tela for muito pequena, mostremos apenas três em vez de cinco */
+
+@media(max-width: 480px) {
+    .container{
+        width: 100vw;
+    }
+
+    /* agora vou remover os 2 últimos painéis */
+    /* para isso eu posso usar o pseudo seletor */
+    .panel:nth-of-type(4),
+    .panel:nth-of-type(5) {
+        display: none;
+    }
+
+}
+
+
